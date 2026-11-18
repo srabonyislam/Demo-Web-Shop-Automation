@@ -1,0 +1,19 @@
+{
+  "name": "project-week-assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:allure": "playwright test && allure generate allure-results --clean"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "allure-commandline": "^2.46.1",
+    "allure-playwright": "^3.15.0"
+  }
+}
