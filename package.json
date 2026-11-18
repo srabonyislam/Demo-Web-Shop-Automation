@@ -1,11 +1,18 @@
+
 {
   "name": "project-week-assignment",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "test:allure": "playwright test && allure generate allure-results --clean"
+    "test": "playwright test",
+    "test:q1": "playwright test tests/q1-invalid-login.spec.js && allure generate allure-results --clean",
+    "test:q2": "playwright test tests/q2-register-add-to-cart.spec.js && allure generate allure-results --clean",
+    "test:q3": "playwright test tests/q3-search-and-checkout.spec.js && allure generate allure-results --clean",
+    "test:ui": "playwright test && allure generate allure-results --clean",
+    "test:allure": "playwright test && allure generate allure-results --clean",
+    "test:api": "newman run \"api_tests/Demo Web Shop API Testing.postman_collection.json\" -r cli,htmlextra --reporter-htmlextra-export \"api_tests/Newman-API-Report.html\"",
+    "test:all": "npm run test:ui && npm run test:api"
   },
   "keywords": [],
   "author": "",

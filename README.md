@@ -4,7 +4,7 @@
 
 This project focuses on Quality Assurance testing of the Demo Web Shop application using automated UI testing and API testing.
 
-The UI automation is developed using JavaScript and Playwright with the Page Object Model (POM) design pattern. API testing is planned using Postman and Newman.
+UI automation is developed using JavaScript and Playwright with the Page Object Model (POM) design pattern. API testing is performed using Postman and Newman with the JSONPlaceholder API.
 
 **Project Repository:**  
 https://github.com/srabonyislam/Demo-Web-Shop-Automation
@@ -24,6 +24,24 @@ https://github.com/srabonyislam/Demo-Web-Shop-Automation
 
 ```text
 Project Week Assignment/
+│
+├── api_tests/
+│   ├── Demo Web Shop API Testing.postman_collection.json
+│   └── Newman-API-Report.html
+│
+├── Evidence/
+│   ├── Q1 Terminal.png
+│   ├── Q1 HTML Report.png
+│   ├── Q1 Test Code.png
+│   ├── Q2 Terminal.png
+│   ├── Q2 HTML Report.png
+│   ├── Q2 Test Code.png
+│   ├── Q3 Terminal.png
+│   ├── Q3 HTML Report.png
+│   ├── Q3 Test Code.png
+│   └── Allure Report.png
+│
+├── data/
 │
 ├── pages/
 │   ├── LoginPage.js
@@ -81,65 +99,136 @@ npx playwright install chromium
 
 ## 5. UI Test Execution
 
-### Run All Test Cases
-
-```bash
-npx playwright test
-```
+UI automation consists of three independent test scenarios.
 
 ### Run Individual Test Cases
 
 **Q1 – Invalid Login**
 
 ```bash
-npx playwright test tests/q1-invalid-login.spec.js
+npm run test:q1
 ```
 
 **Q2 – Registration and Add to Cart**
 
 ```bash
-npx playwright test tests/q2-register-add-to-cart.spec.js
+npm run test:q2
 ```
 
 **Q3 – Product Search and Checkout**
 
 ```bash
-npx playwright test tests/q3-search-and-checkout.spec.js
+npm run test:q3
 ```
 
-## 6. Test Scenarios
+### Run All UI Test Cases
 
-| Test Case | Description |
-|---|---|
-| Q1 | Verify login failure with invalid credentials |
-| Q2 | Register a new customer, log in, and add a product to the cart |
-| Q3 | Search for a product, update quantity, add to cart, and complete checkout |
+To execute all three UI scenarios sequentially:
 
-## 7. Test Reports
+```bash
+npm run test:ui
+```
+
+## 6. API Test Execution
+
+API testing is performed using Postman and Newman with the JSONPlaceholder API.
+
+### Run API Tests
+
+```bash
+npm run test:api
+```
+
+### API Test Scenarios
+
+**GET – Retrieve All Users**
+
+- Send a GET request to retrieve all users.
+- Validate response status code 200.
+- Verify that the response is a non-empty array.
+- Validate user ID, name, and email fields.
+- Save a selected user ID dynamically as a collection variable.
+
+**PUT – Update User Information**
+
+- Send a PUT request using the saved user ID.
+- Update user name, email, phone number, and company name.
+- Validate the returned user ID.
+- Verify the updated name, email, phone number, and company name.
+
+### API Test Results
+
+- Total requests: 2
+- Total assertions: 10
+- Passed: 10
+- Failed: 0
+
+**Postman Collection:**
+
+`api_tests/Demo Web Shop API Testing.postman_collection.json`
+
+**Newman HTML Report:**
+
+`api_tests/Newman-API-Report.html`
+
+## 7. Combined UI and API Execution
+
+To execute all UI scenarios followed by the API test collection in sequence, run:
+
+```bash
+npm run test:all
+```
+
+This command performs the following operations:
+
+1. Executes Q1 – Invalid Login.
+2. Executes Q2 – Registration and Add to Cart.
+3. Executes Q3 – Product Search and Checkout.
+4. Generates the Allure report after UI execution.
+5. Executes the API collection using Newman.
+6. Generates the Newman HTML report.
+
+The combined execution was successfully verified with all three UI tests and all ten API assertions passing.
+
+## 8. Test Reports
 
 ### Playwright HTML Report
 
-After test execution, open the HTML report using:
+The Playwright HTML report is generated automatically after UI test execution.
+
+To open the report:
 
 ```bash
 npx playwright show-report
 ```
 
+Report directory:
+
+`playwright-report/`
+
 ### Allure Report
 
-Generate the Allure report:
+Allure reports are generated automatically after individual UI test executions and full UI suite execution.
 
-```bash
-npx allure generate allure-results --clean
-```
-
-Open the report:
+To open the Allure report:
 
 ```bash
 npx allure open allure-report
 ```
 
-## 8. GitHub Branching Strategy
+Report directory:
+
+`allure-report/`
+
+### Newman HTML Report
+
+The Newman HTML report is generated automatically after API test execution.
+
+Report location:
+
+`api_tests/Newman-API-Report.html`
+
+## 9. GitHub Branching Strategy
 
 Separate feature branches were created for each assignment scenario.
 
@@ -150,36 +239,10 @@ Separate feature branches were created for each assignment scenario.
 
 Each feature branch was committed separately and merged into the main branch.
 
-## 9. API Testing
+The completed project, API collection, reports, and evidence screenshots are available in the public GitHub repository.
 
-API testing was performed using Postman and Newman with the JSONPlaceholder API.
+## 10. Project Information
 
-### Test Scenarios
+**Project:** Demo Web Shop UI Automation and API Testing
 
-- GET request to retrieve all users.
-- Validate response status code 200.
-- Verify the response is a non-empty array.
-- Validate user ID, name, and email fields.
-- Save a selected user ID dynamically as a collection variable.
-- PUT request to update user information using the saved user ID.
-- Validate the updated name, email, phone number, and company name.
-
-### Newman Execution
-
-Run the Postman collection using:
-
-npx newman run "api_tests/Demo Web Shop API Testing.postman_collection.json"
-
-### API Test Results
-
-- Total requests: 2
-- Total assertions: 10
-- Passed: 10
-- Failed: 0
-
-**Postman Collection:** `api_tests/Demo Web Shop API Testing.postman_collection.json`
-
-**Newman HTML Report:** `api_tests/Newman-API-Report.html`
-
-**Project:** Demo Web Shop UI Automation and API Testing  
 **Author:** Srabony Islam
