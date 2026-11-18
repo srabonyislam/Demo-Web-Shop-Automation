@@ -152,19 +152,34 @@ Each feature branch was committed separately and merged into the main branch.
 
 ## 9. API Testing
 
-API testing will use Postman and Newman.
+API testing was performed using Postman and Newman with the JSONPlaceholder API.
 
-Planned API scenarios:
+### Test Scenarios
 
-- GET request to retrieve user information.
-- Validate response status and user data.
-- Save a selected user ID as a collection variable.
-- PUT request to update user information.
-- Validate the updated response.
+- GET request to retrieve all users.
+- Validate response status code 200.
+- Verify the response is a non-empty array.
+- Validate user ID, name, and email fields.
+- Save a selected user ID dynamically as a collection variable.
+- PUT request to update user information using the saved user ID.
+- Validate the updated name, email, phone number, and company name.
 
-The Postman collection and Newman execution instructions will be added to this repository as the API testing work is completed.
+### Newman Execution
 
----
+Run the Postman collection using:
+
+npx newman run "api_tests/Demo Web Shop API Testing.postman_collection.json"
+
+### API Test Results
+
+- Total requests: 2
+- Total assertions: 10
+- Passed: 10
+- Failed: 0
+
+**Postman Collection:** `api_tests/Demo Web Shop API Testing.postman_collection.json`
+
+**Newman HTML Report:** `api_tests/Newman-API-Report.html`
 
 **Project:** Demo Web Shop UI Automation and API Testing  
 **Author:** Srabony Islam
